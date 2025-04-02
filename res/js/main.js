@@ -75,17 +75,28 @@ const gameLoop = () => {
     myPlayer1.draw(ctx);
     ctx.fillStyle = testObject.c;
     ctx.fillRect (testObject.x, testObject.y, testObject.w, testObject.h)
-    checkCollision(myPlayer1, testObject);
+    checkCollision(myPlayer1, testObject,);
     requestAnimationFrame(gameLoop);
 }
 requestAnimationFrame(gameLoop);
 
-const checkCollision = (object1, object2) => {
-    if (object1.x + object1.w > object1.x &&
-        object1.x < object2.x + object2.w &&
-        object1
-    ) {
+const checkCollision = (object1, object2,) => {
+    if (object1.x < object2.x + object2.w &&
+        object1.x + object1.w > object2.x &&
+        object1.y < object2.y + object2.h &&
+        object1.y + object1.h > object2.y) {
 
-           
+    if (object1.x + object1.w > object2.x && object1.x < object2.x) {
+                object1.x = object2.x - object1.w;
+    }
+    else if (object1.x < object2.x + object2.w && object1.x + object1.w > object2.x + object2.w) {
+                object1.x = object2.x + object2.w;
+    }
+    if (object1.y + object1.h > object2.y && object1.y < object2.y) {
+                object1.y = object2.y - object1.h;
+    }
+    else if (object1.y < object2.y + object2.h && object1.y + object1.h > object2.y + object2.h) {
+                object1.y = object2.y + object2.h;
+        }
     }
 }
